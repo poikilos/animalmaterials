@@ -82,11 +82,20 @@ minetest.register_tool("animalmaterials:scissors", {
 --
 -------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
-minetest.register_craftitem("animalmaterials:lasso", {
-	description = S("Lasso"),
-	image = "animalmaterials_lasso.png",
-	stack_max=10,
-})
+local override_lasso = false
+if minetest.get_modpath("mobs") and minetest.settings:get_bool("animalmaterials.override_lasso") then
+	override_lasso = true
+end
+
+if override_lasso then
+	minetest.register_alias("animalmaterials:lasso", "mobs:magic_lasso")
+else
+	minetest.register_craftitem("animalmaterials:lasso", {
+		description = S("Lasso"),
+		image = "animalmaterials_lasso.png",
+		stack_max=10,
+	})
+end
 -------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
 -- net
