@@ -1,1 +1,9 @@
-Everything CC-BY-SA MrElmux
+Licenses
+
+## Code
+copyright (c) 2013 MrElmux, 2013 sapier, 2021 Poikilos
+[CC-BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0)
+
+## Media
+copyright (c) 2013 MrElmux, 2013 sapier, 2021 Poikilos (new cooked pork)
+[CC-BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0)

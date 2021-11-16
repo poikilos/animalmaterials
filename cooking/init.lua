@@ -11,13 +11,16 @@ core.register_craftitem("cooking:meat_cooked", {
 	groups = { meat=1 , eatable=1},
 	stack_max = 25
 })
-core.register_craftitem("cooking:meat_pork_cooked", {
-	description = "Cooked Pork Meat",
+minetest.override_item("animalmaterials:meat_pork", {
+	description = "Cooked Pork",
 	image = "cooking_cooked_meat.png",
 	on_use = core.item_eat(6),
 	groups = { meat=1 , eatable=1},
 	stack_max = 25
 })
+
+minetest.register_alias("cooking:meat_pork_cooked", "animalmaterials:meat_pork")
+
 core.register_craftitem("cooking:meat_chicken_cooked", {
 	description = "Cooked Chicken",
 	image = "cooking_cooked_meat.png",
@@ -33,14 +36,14 @@ core.register_craftitem("cooking:meat_beef_cooked", {
 	stack_max = 25
 })
 core.register_craftitem("cooking:meat_undead_cooked", {
-	description = "Cooked Meat (Now Dead)",
+	description = "Cooked Meat (now dead)",
 	image = "cooking_cooked_meat.png",
 	on_use = core.item_eat(-2),
 	groups = { meat=1 , eatable=1},
 	stack_max = 25
 })
 core.register_craftitem("cooking:meat_venison_cooked", {
-	description = "Cooked Venison Meat",
+	description = "Cooked Venison",
 	image = "cooking_cooked_meat.png",
 	on_use = core.item_eat(6),
 	groups = { meat=1 , eatable=1},
@@ -54,7 +57,7 @@ core.register_craftitem("cooking:meat_toxic_cooked", {
 	stack_max = 25
 })
 core.register_craftitem("cooking:fish_bluewhite_cooked", {
-	description = "Cooked Bluewhite Meat",
+	description = "Cooked Bluewhite",
 	image = "cooking_cooked_meat.png",
 	on_use = core.item_eat(6),
 	groups = { meat=1 , eatable=1},
@@ -68,7 +71,7 @@ core.register_craftitem("cooking:fish_clownfish_cooked", {
 	stack_max = 25
 })
 core.register_craftitem("cooking:pork_cooked", {
-	description = "Cooked Porkchop",
+	description = "Cooked Pork",
 	inventory_image = "cooking_pork_cooked.png",
 	on_use = core.item_eat(8),
 })
@@ -80,7 +83,7 @@ core.register_craft({
 })
 core.register_craft({
 	type= "cooking",
-	recipe = "animalmaterials:meat_pork",
+	recipe = "animalmaterials:pork_raw",
 	output = "cooking:meat_pork_cooked",
 })
 core.register_craft({

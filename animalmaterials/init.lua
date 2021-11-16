@@ -7,8 +7,7 @@
 --
 --! @file init.lua
 --! @brief animalmaterials
---! @copyright Sapier
---! @author Sapier
+--! @copyright Sapier (for other authors see License.txt)
 --! @date 2013-01-27
 --
 -- Contact sapier a t gmx net
@@ -162,8 +161,8 @@ minetest.register_craftitem("animalmaterials:meat_raw", {
 	stack_max=25
 })
 minetest.register_craftitem("animalmaterials:meat_pork", {
-	description = S("Pork (raw)"),
-	image = "animalmaterials_meat_raw.png",
+	description = S("Pork"),
+	image = "animalmaterials_pork_raw.png",
 	on_use = minetest.item_eat(1),
 	groups = { meat=1, eatable=1 },
 	stack_max=25
@@ -218,7 +217,7 @@ minetest.register_craftitem("animalmaterials:meat_ostrich", {
 	stack_max=5
 })
 minetest.register_craftitem("animalmaterials:pork_raw", {
-	description = S("Pork"),
+	description = S("Raw Pork"),
 	image = "animalmaterials_pork_raw.png",
 	on_use = minetest.item_eat(4),
 	groups = { meat=1, eatable=1 },
@@ -291,7 +290,7 @@ animalmaterialsdata["animalmaterials_egg"] = {
 				visual_size     = {x=1,y=1,z=1},
 				}
 	}
-	
+
 animalmaterialsdata["animalmaterials_egg_big"] = {
 			graphics_3d = {
 				visual = "mesh",

@@ -1,5 +1,9 @@
 Licenses
 
-Everything not mentioned:
-	CC-BY-SA 3.0, Author sapier
-	URL: http://creativecommons.org/licenses/by-sa/3.0/de/legalcode
+## Code
+copyright (c) 2013 sapier, 2017 AntumDeluge, 2021 Poikilos
+[CC-BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0)
+
+## Media
+copyright (c) 2013 sapier, 2021 Poikilos (new raw pork)
+[CC-BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0)
