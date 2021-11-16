@@ -16,9 +16,15 @@
 
 -- Boilerplate to support localized strings if intllib mod is installed.
 local S
-if (minetest.get_modpath("intllib")) then
+if (minetest.global_exists("intllib")) then
   dofile(minetest.get_modpath("intllib").."/intllib.lua")
-  S = intllib.Getter(minetest.get_current_modname())
+  if (intllib.make_gettext_pair) then
+    -- New method using gettext.
+    S = intllib.make_gettext_pair(minetest.get_current_modname())
+  else
+    -- Old method using text files.
+    S = intllib.Getter(minetest.get_current_modname())
+  end
 else
   S = function ( s ) return s end
 end
@@ -28,6 +34,17 @@ local version = "0.1.3"
 
 
 animalmaterialsdata = {}
+
+local t_uses = {}
+if minetest.settings:get_bool("enable_tool_wear") == false then
+	t_uses.ten = 0
+	t_uses.twenty = 0
+	t_uses.forty = 0
+else
+	t_uses.ten = 10
+	t_uses.twenty = 20
+	t_uses.forty = 40
+end
 --+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 --+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 -- Node definitions
@@ -53,10 +70,10 @@ minetest.register_tool("animalmaterials:sword_deamondeath", {
 		full_punch_interval = 0.50,
 		max_drop_level=1,
 		groupcaps={
-			fleshy={times={[1]=2.00, [2]=0.80, [3]=0.40}, uses=10, maxlevel=1},
-			snappy={times={[2]=0.70, [3]=0.30}, uses=40, maxlevel=1},
-			choppy={times={[3]=0.70}, uses=40, maxlevel=0},
-			deamon={times={[1]=0.25, [2]=0.10, [3]=0.05}, uses=20, maxlevel=3},
+			fleshy={times={[1]=2.00, [2]=0.80, [3]=0.40}, uses=t_uses.ten, maxlevel=1},
+			snappy={times={[2]=0.70, [3]=0.30}, uses=t_uses.forty, maxlevel=1},
+			choppy={times={[3]=0.70}, uses=t_uses.forty, maxlevel=0},
+			deamon={times={[1]=0.25, [2]=0.10, [3]=0.05}, uses=t_uses.twenty, maxlevel=3},
 		}
 	}
 	})
@@ -72,7 +89,7 @@ minetest.register_tool("animalmaterials:scissors", {
 	tool_capabilities = {
 		max_drop_level=0,
 		groupcaps={
-			wool  = {uses=40,maxlevel=1}
+			wool  = {uses=t_uses.forty,maxlevel=1}
 		}
 	},
 })
@@ -82,11 +99,20 @@ minetest.register_tool("animalmaterials:scissors", {
 --
 -------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
-minetest.register_craftitem("animalmaterials:lasso", {
-	description = S("Lasso"),
-	image = "animalmaterials_lasso.png",
-	stack_max=10,
-})
+local override_lasso = false
+if minetest.get_modpath("mobs") and minetest.settings:get_bool("animalmaterials.override_lasso") then
+	override_lasso = true
+end
+
+if override_lasso then
+	minetest.register_alias("animalmaterials:lasso", "mobs:magic_lasso")
+else
+	minetest.register_craftitem("animalmaterials:lasso", {
+		description = S("Lasso"),
+		image = "animalmaterials_lasso.png",
+		stack_max=10,
+	})
+end
 -------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
 -- net
