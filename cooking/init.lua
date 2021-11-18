@@ -33,30 +33,38 @@ core.register_craftitem("cooking:meat_beef_cooked", {
 	groups = { meat=1 , eatable=1},
 	stack_max = 25
 })
-core.register_craftitem("cooking:meat_undead_cooked", {
-	description = "Cooked Meat (now dead)",
+
+local cooking_more_cooked = false
+if cooking_more_cooked then
+	core.register_craftitem("cooking:meat_undead_cooked", {
+		description = "Cooked Meat (now dead)",
+		image = "cooking_meat_undead_cooked.png",
+		on_use = core.item_eat(-2),
+		groups = { meat=1 , eatable=1},
+		stack_max = 25
+	})
+	core.register_craftitem("cooking:meat_toxic_cooked", {
+		description = "Cooked Toxic Meat",
+		image = "cooking_meat_toxic_cooked.png",
+		on_use = core.item_eat(-5),
+		groups = { meat=1 , eatable=1},
+		stack_max = 25
+	})
+else
+	minetest.register_alias("cooking:meat_undead_cooked", "cooking:meat_cooked")
+	minetest.register_alias("cooking:meat_toxic_cooked", "cooking:meat_cooked")
+end
+
+core.register_craftitem("cooking:fish_bluewhite_cooked", {
+	description = "Cooked Bluewhite",
 	image = "cooking_cooked_meat.png",
-	on_use = core.item_eat(-2),
+	on_use = core.item_eat(6),
 	groups = { meat=1 , eatable=1},
 	stack_max = 25
 })
 core.register_craftitem("cooking:meat_venison_cooked", {
 	description = "Cooked Venison",
 	image = "cooking_venison_cooked.png",
-	on_use = core.item_eat(6),
-	groups = { meat=1 , eatable=1},
-	stack_max = 25
-})
-core.register_craftitem("cooking:meat_toxic_cooked", {
-	description = "Cooked Toxic Meat",
-	image = "cooking_cooked_meat.png",
-	on_use = core.item_eat(-5),
-	groups = { meat=1 , eatable=1},
-	stack_max = 25
-})
-core.register_craftitem("cooking:fish_bluewhite_cooked", {
-	description = "Cooked Bluewhite",
-	image = "cooking_cooked_meat.png",
 	on_use = core.item_eat(6),
 	groups = { meat=1 , eatable=1},
 	stack_max = 25
