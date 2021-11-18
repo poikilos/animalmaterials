@@ -154,43 +154,47 @@ minetest.register_craftitem("animalmaterials:contract", {
 -------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
 minetest.register_craftitem("animalmaterials:meat_raw", {
-	description = S("Raw meat"),
+	description = S("Raw Meat"),
 	image = "animalmaterials_meat_raw.png",
 	on_use = minetest.item_eat(1),
 	groups = { meat=1, eatable=1 },
 	stack_max=25
 })
 minetest.register_craftitem("animalmaterials:meat_pork", {
-	description = S("Pork"),
+	description = S("Raw Pork"),
 	image = "animalmaterials_pork_raw.png",
 	on_use = minetest.item_eat(1),
 	groups = { meat=1, eatable=1 },
 	stack_max=25
 })
+
+-- minetest.register_craftitem("animalmaterials:meat_pork", "animalmaterials:pork_raw")
+-- ^ doing it this way can cause problems if mods try to override register_craftitem
+
 minetest.register_craftitem("animalmaterials:meat_beef", {
-	description = S("Beef (raw)"),
-	image = "animalmaterials_meat_raw.png",
+	description = S("Raw Beef"),
+	image = "animalmaterials_beef_raw.png",
 	on_use = minetest.item_eat(1),
 	groups = { meat=1, eatable=1 },
 	stack_max=25
 })
 minetest.register_craftitem("animalmaterials:meat_chicken", {
-	description = S("Chicken (raw)"),
+	description = S("Raw Chicken"),
 	image = "animalmaterials_meat_raw.png",
 	on_use = minetest.item_eat(1),
 	groups = { meat=1, eatable=1 },
 	stack_max=25
 })
 minetest.register_craftitem("animalmaterials:meat_lamb", {
-	description = S("Lamb (raw)"),
+	description = S("Raw Lamb"),
 	image = "animalmaterials_meat_raw.png",
 	on_use = minetest.item_eat(1),
 	groups = { meat=1, eatable=1 },
 	stack_max=25
 })
 minetest.register_craftitem("animalmaterials:meat_venison", {
-	description = S("Venison (raw)"),
-	image = "animalmaterials_meat_raw.png",
+	description = S("Raw Venison"),
+	image = "animalmaterials_venison_raw.png",
 	on_use = minetest.item_eat(1),
 	groups = { meat=1, eatable=1 },
 	stack_max=25
@@ -210,7 +214,7 @@ minetest.register_craftitem("animalmaterials:meat_toxic", {
 	stack_max=5
 })
 minetest.register_craftitem("animalmaterials:meat_ostrich", {
-	description = S("Ostrich Meat"),
+	description = S("Raw Ostrich"),
 	image = "animalmaterials_meat_raw.png",
 	on_use = minetest.item_eat(3),
 	groups = { meat=1, eatable=1 },
@@ -276,7 +280,7 @@ minetest.register_craftitem("animalmaterials:egg", {
 })
 
 minetest.register_craftitem("animalmaterials:egg_big", {
-	description = S("Egg (big)"),
+	description = S("Big Egg"),
 	image = "animalmaterials_egg_big.png",
 	stack_max=5
 })
@@ -325,13 +329,13 @@ minetest.register_craftitem("animalmaterials:fur", {
 })
 
 minetest.register_craftitem("animalmaterials:fur_deer", {
-	description = S("Deer fur"),
+	description = S("Deer Fur"),
 	image = "animalmaterials_deer_fur.png",
 	stack_max=10
 })
 
 minetest.register_craftitem("animalmaterials:coat_cattle", {
-	description = S("Cattle coat"),
+	description = S("Cattle Coat"),
 	image = "animalmaterials_cattle_coat.png",
 	stack_max=10
 })
@@ -343,7 +347,7 @@ minetest.register_craftitem("animalmaterials:coat_cattle", {
 -------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
 minetest.register_craftitem("animalmaterials:deer_horns", {
-	description = S("Deer horns"),
+	description = S("Antlers"),
 	image = "animalmaterials_deer_horns.png",
 	stack_max=20
 })

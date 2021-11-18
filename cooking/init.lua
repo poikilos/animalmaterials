@@ -11,15 +11,13 @@ core.register_craftitem("cooking:meat_cooked", {
 	groups = { meat=1 , eatable=1},
 	stack_max = 25
 })
-minetest.override_item("animalmaterials:meat_pork", {
+minetest.override_item("cooking:meat_pork_cooked", {
 	description = "Cooked Pork",
-	image = "cooking_cooked_meat.png",
+	image = "cooking_pork_cooked.png",
 	on_use = core.item_eat(6),
 	groups = { meat=1 , eatable=1},
 	stack_max = 25
 })
-
-minetest.register_alias("cooking:meat_pork_cooked", "animalmaterials:meat_pork")
 
 core.register_craftitem("cooking:meat_chicken_cooked", {
 	description = "Cooked Chicken",
@@ -30,7 +28,7 @@ core.register_craftitem("cooking:meat_chicken_cooked", {
 })
 core.register_craftitem("cooking:meat_beef_cooked", {
 	description = "Cooked Beef",
-	image = "cooking_cooked_meat.png",
+	image = "cooking_beef_cooked.png",
 	on_use = core.item_eat(6),
 	groups = { meat=1 , eatable=1},
 	stack_max = 25
@@ -44,7 +42,7 @@ core.register_craftitem("cooking:meat_undead_cooked", {
 })
 core.register_craftitem("cooking:meat_venison_cooked", {
 	description = "Cooked Venison",
-	image = "cooking_cooked_meat.png",
+	image = "cooking_venison_cooked.png",
 	on_use = core.item_eat(6),
 	groups = { meat=1 , eatable=1},
 	stack_max = 25
@@ -83,7 +81,7 @@ core.register_craft({
 })
 core.register_craft({
 	type= "cooking",
-	recipe = "animalmaterials:pork_raw",
+	recipe = "animalmaterials:meat_pork",
 	output = "cooking:meat_pork_cooked",
 })
 core.register_craft({
@@ -122,11 +120,6 @@ core.register_craft({
 	recipe = "animalmaterials:fish_clownfish",
 	output = "cooking:fish_clownfish_cooked",
 })
-core.register_craft({
-	type = "cooking",
-	output = "cooking:pork_cooked",
-	recipe = "animalmaterials:pork_raw",
-	cooktime = 5,
-})
+
 
 core.log("action","MOD: cooking (by Mr Elmux) version .. " .. version .. " loaded.")
