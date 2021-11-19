@@ -11,13 +11,23 @@ core.register_craftitem("cooking:meat_cooked", {
 	groups = { meat=1 , eatable=1},
 	stack_max = 25
 })
-minetest.override_item("cooking:meat_pork_cooked", {
+
+minetest.register_craftitem("cooking:meat_pork_cooked", {
 	description = "Cooked Pork",
 	image = "cooking_pork_cooked.png",
 	on_use = core.item_eat(6),
 	groups = { meat=1 , eatable=1},
 	stack_max = 25
 })
+if enable_extra_pork_raw then
+	core.register_craftitem("cooking:pork_cooked", {
+		description = "Cooked Pork",
+		inventory_image = "cooking_pork_cooked.png",
+		on_use = core.item_eat(8),
+	})
+else
+	minetest.register_alias("cooking:pork_cooked", "cooking:meat_pork_cooked")
+end
 
 core.register_craftitem("cooking:meat_chicken_cooked", {
 	description = "Cooked Chicken",
@@ -75,11 +85,6 @@ core.register_craftitem("cooking:fish_clownfish_cooked", {
 	on_use = core.item_eat(6),
 	groups = { meat=1 , eatable=1},
 	stack_max = 25
-})
-core.register_craftitem("cooking:pork_cooked", {
-	description = "Cooked Pork",
-	inventory_image = "cooking_pork_cooked.png",
-	on_use = core.item_eat(8),
 })
 
 core.register_craft({

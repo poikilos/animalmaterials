@@ -9,7 +9,5 @@ This Poikilos fork is based on the AntumMT fork plus changes from his antum bran
 - [ ] Make translation po file(s) and template.pot match the new naming.
 - [ ] Add chicken (with clear authorship, or redrawn)
 - [ ] Add ostrich (with clear authorship, or redrawn)
-- [ ] add a new fish_bluewhite texture
-- [ ] add a new fish_clownfish texture
 
 Authors & Licenses: See License.txt

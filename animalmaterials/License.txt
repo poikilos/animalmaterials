@@ -1,9 +1,26 @@
 Licenses
 
+
 ## Code
+
 copyright (c) 2013 sapier, 2017 AntumDeluge, 2021 Poikilos
 [CC-BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0)
 
+
 ## Media
-copyright (c) 2013 sapier, 2021 Poikilos (original work: egg_big & all meats redrawn, & new beef, venison, lamb)
+
+all meats redrawn, & new beef, venison, lamb
+2021 Poikilos (original work)
+[CC-BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0)
+
+improved egg_big
+copyright (c) 2013 sapier, 2021 Poikilos (scaled with scalerim, retouched)
+[CC-BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0)
+
+fish textures
+copyright (c) 2016 Mossmanikin, D00Med (for LegendOfMinetest)
+[CC0](https://creativecommons.org/share-your-work/public-domain/cc0/)
+
+other media (original circa 2013 textures)
+copyright (c) 2013 sapier
 [CC-BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0)

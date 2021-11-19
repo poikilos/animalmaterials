@@ -99,19 +99,26 @@ minetest.register_tool("animalmaterials:scissors", {
 -------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
 local override_lasso = false
-if minetest.get_modpath("mobs") and minetest.settings:get_bool("animalmaterials.override_lasso") then
-	override_lasso = true
-end
+-- This was a bad idea! Overriding lasso and requiring mobs prevents
+-- animalmaterials from being a low-level mod which is its only advantage!
+-- - mobs should optionally require animalmaterials instead.
+-- - mobs can override the lasso with minetest.override_item if it wants
 
-if override_lasso then
-	minetest.register_alias("animalmaterials:lasso", "mobs:magic_lasso")
-else
-	minetest.register_craftitem("animalmaterials:lasso", {
-		description = S("Lasso"),
-		image = "animalmaterials_lasso.png",
-		stack_max=10,
-	})
-end
+-- if minetest.get_modpath("mobs") and minetest.settings:get_bool("animalmaterials.override_lasso") then
+--	override_lasso = true
+-- end
+
+-- if override_lasso then
+-- 	minetest.register_alias("animalmaterials:lasso", "mobs:magic_lasso")
+-- else
+minetest.register_craftitem("animalmaterials:lasso", {
+	description = S("Lasso"),
+	image = "animalmaterials_lasso.png",
+	stack_max=10,
+})
+-- end
+
+
 -------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
 -- net
@@ -168,8 +175,20 @@ minetest.register_craftitem("animalmaterials:meat_pork", {
 	stack_max=25
 })
 
--- minetest.register_craftitem("animalmaterials:meat_pork", "animalmaterials:pork_raw")
--- ^ doing it this way can cause problems if mods try to override register_craftitem
+-- TODO: check if minetest.registered_items["mobs:pork_raw"] then
+enable_extra_pork_raw = false
+if enable_extra_pork_raw then
+	minetest.register_craftitem("animalmaterials:pork_raw", {
+		description = S("Raw Pork"),
+		image = "animalmaterials_pork_raw.png",
+		on_use = minetest.item_eat(4),
+		groups = { meat=1, eatable=1 },
+		stack_max=5
+	})
+else
+	minetest.register_alias("animalmaterials:pork_raw", "animalmaterials:meat_pork")
+	-- ^ doing it this way can cause problems if mods try to override register_craftitem (?)
+end
 
 minetest.register_craftitem("animalmaterials:meat_beef", {
 	description = S("Raw Beef"),
@@ -220,17 +239,10 @@ minetest.register_craftitem("animalmaterials:meat_ostrich", {
 	groups = { meat=1, eatable=1 },
 	stack_max=5
 })
-minetest.register_craftitem("animalmaterials:pork_raw", {
-	description = S("Raw Pork"),
-	image = "animalmaterials_pork_raw.png",
-	on_use = minetest.item_eat(4),
-	groups = { meat=1, eatable=1 },
-	stack_max=5
-})
 
 minetest.register_craftitem("animalmaterials:fish_bluewhite", {
-	description = S("Fish (bluewhite)"),
-	image = "animalmaterials_meat_raw.png",
+	description = S("Fish (cichlid)"),
+	image = "animalmaterials_bluewhite_raw.png",
 	on_use = minetest.item_eat(1),
 	groups = { meat=1, eatable=1 },
 	stack_max=25
@@ -238,7 +250,7 @@ minetest.register_craftitem("animalmaterials:fish_bluewhite", {
 
 minetest.register_craftitem("animalmaterials:fish_clownfish", {
 	description = S("Fish (clownfish)"),
-	image = "animalmaterials_meat_raw.png",
+	image = "animalmaterials_clownfish_raw.png",
 	on_use = minetest.item_eat(1),
 	groups = { meat=1, eatable=1 },
 	stack_max=25
