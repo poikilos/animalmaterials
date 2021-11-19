@@ -187,7 +187,7 @@ minetest.register_craftitem("animalmaterials:meat_chicken", {
 })
 minetest.register_craftitem("animalmaterials:meat_lamb", {
 	description = S("Raw Lamb"),
-	image = "animalmaterials_meat_raw.png",
+	image = "animalmaterials_lamb_raw.png",
 	on_use = minetest.item_eat(1),
 	groups = { meat=1, eatable=1 },
 	stack_max=25
