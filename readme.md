@@ -1,4 +1,78 @@
 # animalmaterials
-The purpose of the animalmaterials modpack is to provide low-level mods that don't depend on anything so that multiple mods can integrate with the same meats. For example, cooking depends on animalmaterials and doesn't have to depend on any specific mobs mod. To further reduce duplication of items, you should change your mobs mod to depend on the animalmaterials mod or a mod like it. Then mods which are either advanced or simple don't have to depend on your mobs mod. Mobs mods may have many dependencies, so depending on one can cause problems. If you want to have a different lasso, just use minetest.override_item and depend on the lasso from the animalmaterials mod. That way you can avoid a potential circular dependency between this or some other lasso and your mobs mod (To avoid that type of problem, the dependency on mobs was removed from this fork though the AntumMT branch was used). You can start to see that having a low-level mod that defines craftitems (or even nodes in other cases) is better than having everything defined in your high-level mod such as mobs. If you define something as simple as raw chicken in your mobs mod, you will forever force people to depend on a complex high-level mod (mobs in this case) even if they simply want to create something as simple as a cooked chicken. This modpack and the ideas behind it are a way to make dependencies easier to understand and make mods and mod integration (cooperation between projects) easier to understand.
+The purpose of the animalmaterials modpack is to provide low-level mods
+that don't depend on anything so that multiple mods can integrate with
+the same meats. For example, cooking depends on animalmaterials and
+doesn't have to depend on any specific mobs mod.
 
-The Poikilos fork is a fork of AntumMT's fork of sapier's animalmaterials modpack.
+The Poikilos fork is a fork of AntumMT's fork of sapier's
+animalmaterials modpack (the dependency on mobs was removed from this
+fork though the AntumMT branch was used).
+
+## Project Status
+The ideas behind this are still being explored so rather high-level
+stuff like animal_resources and mob_environments are still here.
+They may be moved elsewhere. For now, I suggest only using the following
+mods from this modpack:
+- animalmaterials
+- cooking (optionally)
+
+## What other mods can do to be better
+You can change your mobs mod to depend on the animalmaterials mod or a
+mod like it (mods like default and basic_materials use the same idea,
+being low-level mods which primarily define materials for use by other
+mods).
+Then mods don't have to depend on your specific mobs mod and assume
+which materials are present. Why is this important? Because the other mods
+the users have are ones you don't maintain and for them to have
+free choice you should let them depend on a low-level mod instead of
+assuming they want everything from your mod. You can cooperate with
+others and make more features without duplicate items. Here are a few
+examples:
+1. cooking (This mod can solve the most frequent problems)
+   - A mod which provides recipes for raw meat(s): This is a frequent issue
+     since several advanced cooking mods exist which use specific meats
+     or meat groups.
+2. animalmaterials can be used by:
+   - Any mod which provides specific mob(s)
+   - Any mod which provides recipes for raw meat(s) (such as cooking)
+3. Poikilos fork of nether (real example) can be used by:
+   - A mod which defines the nether `*` (this would be a fork of nether or a new nether or nether-like mapgen mod)
+   - Some odd mod which lets you obtain nether materials some other way `*`
+   - A mod which defines nether fences but doesn't require a nether realm mod (maybe someone wants a museum or creative world with the materials but not the maintenance and space involved in having a nether realm). `*`
+4. basic_materials (This mod solves the most disruptive problems) can be used by:
+   - mesecons
+   - technic
+   - any mod that wants the materials for recipes or mapgen but doesn't want to require mesecons (or only wants mesecons or technic but not both)
+
+`*`: Examples marked with `*` are only hypothetical and don't represent any mod(s) that I know to exist.
+
+### What if I want different features than these simplistic items offer?
+Depend on animalmaterials then use `minetest.override_item`. The Minetest
+lua API has the function for one reason: to solve your issue! Not everyone wants
+your specific lasso, but you can still have all the features you want
+when you or they are using your specific lasso mod--problem solved. Then multiple mods
+can utilize the same lasso or make new recipes for it and they only
+ever need animalmaterials not some lasso in some specific namespace.
+If you make animalmaterials an optional dependency rather
+than a required one, simply check for it in your code (such as via
+`rawget (_G, "animalmaterials")`), then if animalmaterials isn't
+present, call `minetest.register_craftitem` instead of
+`minetest.override_item` (then in the same case you can optionally make
+an alias from the animalmaterials one to yours, such as if you want to
+use an old world that contains animalmaterials items).
+
+### Why not just depend on mobs or whatever mod redefines these items?
+The problems revolve around having too many assumptions (both
+materials and behaviors code already loaded) by the time a high-level
+mod (mobs in this case) is loaded. You can avoid circular dependencies
+easily, but the fact that people run into them indicates that the
+dependency tree is counter-intuitive.
+
+If you define something as simple as raw chicken in your mobs mod, you
+will forever force people to depend on a complex high-level mod (mobs
+in this case) even if they simply want to create something simple such
+as cooking recipes. This modpack and the ideas behind it are a way to
+make dependencies easier to understand and make mods and mod
+integration (cooperation between projects) easier without duplicate
+items in multiple namespaces.
+
