@@ -31,7 +31,7 @@ end
 
 core.register_craftitem("cooking:meat_chicken_cooked", {
 	description = "Cooked Chicken",
-	image = "cooking_cooked_meat.png",
+	image = "cooking_chicken_cooked.png",
 	on_use = core.item_eat(6),
 	groups = { meat=1 , eatable=1},
 	stack_max = 25
