@@ -6,7 +6,7 @@ doesn't have to depend on any specific mobs mod.
 
 The Poikilos fork is a fork of AntumMT's fork of sapier's
 animalmaterials modpack (the dependency on mobs was removed from this
-fork though the AntumMT branch was used).
+fork though the antum branch was used).
 
 ## Project Status
 The ideas behind this are still being explored so rather high-level
@@ -15,6 +15,9 @@ They may be moved elsewhere. For now, I suggest only using the following
 mods from this modpack:
 - animalmaterials
 - cooking (optionally)
+
+## Authors & License
+See the individual mod folders.
 
 ## What other mods can do to be better
 You can change your mobs mod to depend on the animalmaterials mod or a

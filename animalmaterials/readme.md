@@ -7,7 +7,5 @@ This Poikilos fork is based on the AntumMT fork plus changes from his antum bran
 - [ ] This fork will attempt to be a suitable replacement for that version of animalmaterials as well.
   - [ ] Add es translation from there.
 - [ ] Make translation po file(s) and template.pot match the new naming.
-- [ ] Add chicken (with clear authorship, or redrawn)
-- [ ] Add ostrich (with clear authorship, or redrawn)
 
 Authors & Licenses: See License.txt

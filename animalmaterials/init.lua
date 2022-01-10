@@ -234,7 +234,7 @@ minetest.register_craftitem("animalmaterials:meat_toxic", {
 })
 minetest.register_craftitem("animalmaterials:meat_ostrich", {
 	description = S("Raw Ostrich"),
-	image = "animalmaterials_meat_raw.png",
+	image = "animalmaterials_ostrich_raw.png",
 	on_use = minetest.item_eat(3),
 	groups = { meat=1, eatable=1 },
 	stack_max=5
