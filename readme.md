@@ -25,12 +25,32 @@ mod like it (mods like default and basic_materials use the same idea,
 being low-level mods which primarily define materials for use by other
 mods).
 Then mods don't have to depend on your specific mobs mod and assume
-which materials are present. Why is this important? Because the other mods
-the users have are ones you don't maintain and for them to have
-free choice you should let them depend on a low-level mod instead of
-assuming they want everything from your mod. You can cooperate with
-others and make more features without duplicate items. Here are a few
-examples:
+which materials are present. Why is this important?
+
+1. Other mods the users have are ones you don't maintain and for them to have
+   free choice you should let them depend on a low-level mod instead of
+   assuming they want everything from your mod.
+2. Worse though about that fact, that a high-level mod like mobs redo assumes many things by
+   the time it is loaded, is that if you changed mobs redo or another
+   high-level mob like it, the code would become very divergent (you
+   couldn't reuse as much code). For example, even just the fact that
+   mobs redo defines chicken meat instead of using animalmaterials
+   means that *every* mod that affects chicken must use the "mobs"
+   namespace to access it, or add checks to see whether that or a
+   different chicken is present--none of that would have to happen if
+   mobs redo instead simply used animalmaterials and improved it if
+   necessary (and for compatibility like this fork does, kept the exact
+   same set of craftitems).
+3. However, that isn't the worst part. The worst part is that every
+   *lower-level* mod in the tree of dependencies including the things
+   that those depend on and so on have no access to whatever mobs
+   defines-- such as meats in the case of mobs_redo--no mod already
+   loaded (due to being in the dependency tree) can use them!
+4. On the positive side, doing registrations in a low-level mod helps
+   you cooperate with others by not creating duplicate materials such
+   as ingredients or mapgen nodes when you add features.
+
+Here are a few examples of mods that consider those four facts:
 1. cooking (This mod can solve the most frequent problems)
    - A mod which provides recipes for raw meat(s): This is a frequent issue
      since several advanced cooking mods exist which use specific meats
@@ -48,6 +68,7 @@ examples:
    - any mod that wants the materials for recipes or mapgen but doesn't want to require mesecons (or only wants mesecons or technic but not both)
 
 `*`: Examples marked with `*` are only hypothetical and don't represent any mod(s) that I know to exist.
+
 
 ### What if I want different features than these simplistic items offer?
 Depend on animalmaterials then use `minetest.override_item`. The Minetest
