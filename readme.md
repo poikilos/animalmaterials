@@ -44,8 +44,10 @@ which materials are present. Why is this important?
 3. However, that isn't the worst part. The worst part is that every
    *lower-level* mod in the tree of dependencies including the things
    that those depend on and so on have no access to whatever mobs
-   defines-- such as meats in the case of mobs_redo--no mod already
-   loaded (due to being in the dependency tree) can use them!
+   defines--such as meats in the case of mobs_redo--no mod already
+   loaded (due to being in the dependency tree) can use them! There are
+   probably cases other than mobs redo where this problem is even more
+   disruptive.
 4. On the positive side, doing registrations in a low-level mod helps
    you cooperate with others by not creating duplicate materials such
    as ingredients or mapgen nodes when you add features.
