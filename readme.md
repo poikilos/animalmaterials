@@ -112,7 +112,7 @@ Here are a few examples of mods that consider those five facts:
 4. basic_materials (This mod solves the most disruptive problems) can be used by:
    - chains
    - homedecor
-   - mesecons
+   - mesecons (but isn't yet... See ["mesecons should use my basic_materials mod"](https://github.com/minetest-mods/mesecons/issues/440)) issue by VanessaE)
    - technic
    - any mod that wants the materials for recipes or mapgen but doesn't want to require mesecons (or only wants mesecons or technic but not both)
 
