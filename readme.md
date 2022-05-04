@@ -47,12 +47,57 @@ which materials are present. Why is this important?
    defines--such as meats in the case of mobs_redo--no mod already
    loaded (due to being in the dependency tree) can use them! There are
    probably cases other than mobs redo where this problem is even more
-   disruptive.
-4. On the positive side, doing registrations in a low-level mod helps
+   disruptive. Even if mod B risked using the materials from the
+   high-level mod A, there are two problems with that:
+   - Mod B can't add the mod as a dependency nor an optional dependency
+     because that would create a circular dependency. Not adding the
+     mod as a dependency breaks the concept of dependencies: Mod B
+     would assume things are there without listing requirements.
+   - Mod B can't check for registered craftitems nor nodes:
+     Mod B can't reliably check if there is one or another version of
+     the mod if the mod changes or a different fork or replacement
+     version of the mod is used. For example, if a mod depends on
+     "farming", the mod still has to check whether certain craftitems
+     or nodes are defined in order to determine whether
+     minetest_game/farming or farming redo is installed. In that case,
+     farming is a low-level mod and doesn't have any problems. However,
+     if the mod that registered the items was a high-level mod with
+     several dependencies like mobs redo, the circular dependency
+     problem would occur: The mod wouldn't be loaded yet and mod B
+     would have no way to check if something was registered. The
+     solution is for both mod B and mobs redo to depend on a low-level
+     mod like animalmaterials. See also "Why not add everything to
+     default?" below.
+4. Why not add everything to default? Having a low-level mod is a better
+   solution than adding everything to default because if the
+   registrations are in a separate mod, mod B and the high-level mod
+   can require the low-level mod and have a reasonable assumption of
+   what is in there, and if there is a known variant, the two mods can
+   check what is registered. Checking for what is registered by default
+   can become a problem if low-level items used for recipes,
+   treasure/prizes mods, minigames, etc. may use them. Having
+   boilerplate such as:
+   `if minetest.registered_nodes["default:permafrost"] then`
+   in every mod that depends on default is already technically
+   necessary (if the node is used). That node isn't very important for
+   recipes, treasure/prizes mods, minigames, etc., but it is already
+   used by some mods and maybe a mob mod will want the creature to
+   spawn there or a plantlife mapgen mod will want a certain plant to
+   spawn there. Also, if default creeps to encompass nodes or
+   craftitems those categories of mods use, then the registration
+   checks will have to creep into mods in those or similar categories,
+   in other words, a virtually unlimited number of mods.
+   - The problem can get more complex if either default or another mod
+     may define it. Then each high-level mod must optionally depend on
+     both low-level mods, check for the registration in both namespaces,
+     and store the id string of the one that is available in a variable
+     for later use in the mod (The namespace is unknown so the ID can't
+     be used directly).
+5. As a positive solution, doing registrations in a low-level mod helps
    you cooperate with others by not creating duplicate materials such
-   as ingredients or mapgen nodes when you add features.
+   as ingredients or mapgen nodes in mods where you add features.
 
-Here are a few examples of mods that consider those four facts:
+Here are a few examples of mods that consider those five facts:
 1. cooking (This mod can solve the most frequent problems)
    - A mod which provides recipes for raw meat(s): This is a frequent issue
      since several advanced cooking mods exist which use specific meats
@@ -65,6 +110,8 @@ Here are a few examples of mods that consider those four facts:
    - Some odd mod which lets you obtain nether materials some other way `*`
    - A mod which defines nether fences but doesn't require a nether realm mod (maybe someone wants a museum or creative world with the materials but not the maintenance and space involved in having a nether realm). `*`
 4. basic_materials (This mod solves the most disruptive problems) can be used by:
+   - chains
+   - homedecor
    - mesecons
    - technic
    - any mod that wants the materials for recipes or mapgen but doesn't want to require mesecons (or only wants mesecons or technic but not both)
