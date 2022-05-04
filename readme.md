@@ -22,7 +22,8 @@ See the individual mod folders.
 ## What other mods can do to be better
 
 See the related 2022-05-04 poikilos.org article:
-"Use animalmaterials for Minetest mods: low-level dependencies for better architecture"
+["Use animalmaterials and basic_materials for Minetest mods: low-level
+dependencies for better architecture"](https://poikilos.org/2022/05/04/use-animalmaterials-and-basic_materials-for-minetest-mods-low-level-dependencies-for-better-architecture/)
 
 ### Why not just depend on mobs or whatever mod redefines these items?
 The problems revolve around having too many assumptions (both
